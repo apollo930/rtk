@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!--
+  UR5-style parameters
+  Joint axes match UR5 convention (shoulder_pan=Z, rest=Y/Z alternating).
+  Limits: ±2π rad, effort 150 N·m (joints 1-3) / 28 N·m (joints 4-6),
+          velocity 2.09 rad/s (joints 1-3) / 3.14 rad/s (joints 4-6).
+-->
+<robot name="rtk_arm">
+
+  <!-- Base -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.005"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <material name="dark_gray">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint 1 — shoulder pan (Z axis), d1 = 0.089159 m -->
+  <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0.08" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-6.2832" upper="6.2832" effort="150" velocity="2.09"/>
+  </joint>
+
+  <!-- Link 1 — shoulder -->
+  <link name="link1">
+    <visual>
+      <origin xyz="0 0 0.05"/>
+      <geometry>
+        <box size="0.119 0.119 0.136"/>
+      </geometry>
+      <material name="silver">
+        <color rgba="0.82 0.82 0.82 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint 2 — shoulder lift (Y axis), translates 0.13585 m in Y -->
+  <joint name="joint2" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 0.045 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-6.2832" upper="6.2832" effort="150" velocity="2.09"/>
+  </joint>
+
+  <!-- Link 2 — upper arm, a2 = 0.42500 m -->
+  <link name="link2">
+    <visual>
+      <origin xyz="0 0 0.115"/>
+      <geometry>
+        <box size="0.080 0.080 0.425"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
+
+  <!-- Joint 3 — elbow (Y axis), a2 = 0.42500 m along Z -->
+  <joint name="joint3" type="revolute">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="0 0 0.115" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-6.2832" upper="6.2832" effort="150" velocity="2.09"/>
+  </joint>
+
+  <!-- Link 3 — forearm, a3 = 0.39225 m -->
+  <link name="link3">
+    <visual>
+      <origin xyz="0 0 0.134"/>
+      <geometry>
+        <box size="0.065 0.065 0.39225"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
+
+  <!-- Joint 4 — wrist 1 (Y axis), a3 = 0.39225 m along Z -->
+  <joint name="joint4" type="revolute">
+    <parent link="link3"/>
+    <child link="link4"/>
+    <origin xyz="0 0 0.134" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-6.2832" upper="6.2832" effort="28" velocity="3.14"/>
+  </joint>
+
+  <!-- Link 4 — wrist 1, d4 = 0.10915 m -->
+  <link name="link4">
+    <visual>
+      <origin xyz="0 0.05 0"/>
+      <geometry>
+        <box size="0.055 0.10915 0.055"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
+
+  <!-- Joint 5 — wrist 2 (Z axis), d4 = 0.10915 m along Y -->
+  <joint name="joint5" type="revolute">
+    <parent link="link4"/>
+    <child link="link5"/>
+    <origin xyz="0 0.05 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-6.2832" upper="6.2832" effort="28" velocity="3.14"/>
+  </joint>
+
+  <!-- Link 5 — wrist 2, d5 = 0.09465 m -->
+  <link name="link5">
+    <visual>
+      <origin xyz="0 0 0.05"/>
+      <geometry>
+        <box size="0.050 0.050 0.09465"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
+
+  <!-- Joint 6 — wrist 3 (Y axis), d5 = 0.09465 m along Z -->
+  <joint name="joint6" type="revolute">
+    <parent link="link5"/>
+    <child link="tool0"/>
+    <origin xyz="0 0 0.05" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-6.2832" upper="6.2832" effort="28" velocity="3.14"/>
+  </joint>
+
+  <!-- Tool flange — d6 = 0.08230 m -->
+  <link name="tool0">
+    <visual>
+      <origin xyz="0 0 0.04115"/>
+      <geometry>
+        <box size="0.040 0.040 0.08230"/>
+      </geometry>
+      <material name="dark_gray"/>
+    </visual>
+  </link>
+
+</robot>
