@@ -35,22 +35,22 @@ class PacketMapper(Node):
 
         # Packet → Robot command map (4x4 base)
         base_packet_commands = {
-            1:  "J=-110,840,350,-80,0,1000",
-            2:  "J=-110,1040,100,-80,0,1000",
-            3:  "J=-90,1130,-40,-80,0,1000",
-            4:  "J=-80,1270,-270,0,0,1000",
-            5:  "J=20,890,300,0,0,1000",
-            6:  "J=10,1050,100,0,0,1000",
-            7:  "J=10,1170,-90,0,0,1000",
-            8:  "J=10,1320,-340,0,0,1000",
-            9:  "J=140,750,390,-130,140,1000",
-            10: "J=110,1040,70,0,160,1000",
-            11: "J=90,1200,-150,0,160,1000",
-            12: "J=90,1270,-290,0,160,1000",
-            13: "J=270,970,220,0,360,1000",
-            14: "J=230,1060,30,0,360,1000",
-            15: "J=210,1200,-160,0,360,1000",
-            16: "J=170,1370,-440,0,360,1000",
+            1:  "J=-110,840,350,-80,0,800",
+            2:  "J=-110,1040,100,-80,0,800",
+            3:  "J=-90,1130,-40,-80,0,800",
+            4:  "J=-80,1270,-270,0,0,800",
+            5:  "J=20,890,300,0,0,800",
+            6:  "J=10,1050,100,0,0,800",
+            7:  "J=10,1170,-90,0,0,800",
+            8:  "J=10,1320,-340,0,0,800",
+            9:  "J=140,750,390,-130,140,800",
+            10: "J=110,1040,70,0,160,800",
+            11: "J=90,1200,-150,0,160,800",
+            12: "J=90,1270,-290,0,160,800",
+            13: "J=270,970,220,0,360,800",
+            14: "J=230,1060,30,0,360,800",
+            15: "J=210,1200,-160,0,360,800",
+            16: "J=170,1370,-440,0,360,800",
         }
 
         # Densify to 7x7 by inserting one midpoint between each base coordinate.
@@ -169,9 +169,10 @@ class PacketMapper(Node):
                 self.get_logger().info(
                     f"Published command: {command_string}"
                 )
-            
+                
+                close_grip_val = 130
                 time.sleep(3)
-                step_values[-1] = 250  # Close gripper
+                step_values[-1] = close_grip_val  # Close gripper
                 steps_msg.data = step_values
                 self.steps_publisher.publish(steps_msg)
                 self.get_logger().info(
@@ -180,21 +181,21 @@ class PacketMapper(Node):
 
                 ## return to mean pose
                 time.sleep(2)
-                steps_msg.data = [0, 0, 0, 0, 0, 250]
+                steps_msg.data = [0, 0, 0, 0, 0, close_grip_val]
                 self.steps_publisher.publish(steps_msg)
                 self.get_logger().info(
                     f"Published return to mean pose command"
                 )
 
                 time.sleep(2)
-                steps_msg.data = [1030, 0, 0, 0, 0, 250]
+                steps_msg.data = [1030, 0, 0, 0, 0, close_grip_val]
                 self.steps_publisher.publish(steps_msg)
                 self.get_logger().info(
                     f"Published return to mean pose command"
                 )
 
                 time.sleep(1)
-                drop_pose_steps = [1030, 670, 440, -110, 0, 250]
+                drop_pose_steps = [1030, 670, 440, -110, 0, close_grip_val]
                 steps_msg.data = drop_pose_steps
                 self.steps_publisher.publish(steps_msg)
                 self.get_logger().info(

@@ -28,7 +28,7 @@ def generate_launch_description() -> LaunchDescription:
     )
     camera_id_arg = DeclareLaunchArgument(
         "camera_id",
-        default_value="5",
+        default_value="4",
         description="Camera device index for object_detection node",
     )
 

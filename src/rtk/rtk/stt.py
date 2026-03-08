@@ -219,7 +219,6 @@ class SpeechBrainNode(Node):
                 self.get_logger().info(f"You said: {text}")
 
                 command = self.extract_command(text)
-
                 if not command:
                     self.get_logger().warn("No valid object detected")
                     # self.speak("Invalid command. Please say red or blue cube or cylinder.")

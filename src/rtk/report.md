@@ -155,7 +155,7 @@ Planned next steps include:
 6. Siciliano, B. et al., *Robotics: Modelling, Planning and Control*, Springer, 2009.
 
 ## Appendix A: Reproducibility Notes
-
+Here's the github repo for our project: [GitHub](https://github.com/apollo930/rtk)
 Relevant launch files and modules are available in the package:
 - `launch/project.launch.py`
 - `launch/manual_control.launch.py`
