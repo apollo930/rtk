@@ -1,0 +1,28 @@
+[project]
+name = "tmr"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "certifi==2026.2.25",
+    "cffi==2.0.0",
+    "charset-normalizer==3.4.4",
+    "gtts==2.5.4",
+    "idna==3.11",
+    "numpy==2.4.2",
+    "opencv-contrib-python==4.13.0.92",
+    "pip==24.0",
+    "playsound==1.2.2",
+    "pyaudio==0.2.14",
+    "pycparser==3.0",
+    "requests==2.32.5",
+    "sounddevice==0.5.5",
+    "speechrecognition==3.14.5",
+    "srt==3.5.3",
+    "tqdm==4.67.3",
+    "typing-extensions==4.15.0",
+    "urllib3==2.6.3",
+    "vosk==0.3.45",
+    "websockets==16.0",
+]
